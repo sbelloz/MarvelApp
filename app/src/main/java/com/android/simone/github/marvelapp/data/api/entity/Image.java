@@ -3,7 +3,7 @@ package com.android.simone.github.marvelapp.data.api.entity;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * @author Simone Bellotti <simone.bellotti@immobiliare.it>
+ * @author Simone Bellotti
  */
 
 public class Image {

@@ -6,24 +6,34 @@ import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel
 import java.util.List;
 
 /**
- * @author Simone Bellotti <simone.bellotti@immobiliare.it>
+ * @author Simone Bellotti
  */
 
 public interface ComicListContract {
 
     interface Presenter extends BasePresenter {
-        void onNewPage();
+        void loadNewPage();
 
-        void showComicDetail(ComicViewModel model);
+        void retry();
+
+        void onComicClicked(ComicViewModel model);
     }
 
     interface View {
         void showLoading();
 
-        void showError(String message);
+        void hideLoading();
 
         void showEmpty();
 
+        void hideEmpty();
+
+        void showRetry();
+
+        void hideRetry();
+
         void showComicList(List<ComicViewModel> comicList);
+
+        void showComicDetail(ComicViewModel model);
     }
 }

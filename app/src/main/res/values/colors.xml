@@ -2,5 +2,10 @@
 <resources>
     <color name="colorPrimary">#F44336</color>
     <color name="colorPrimaryDark">#D32F2F</color>
-    <color name="colorAccent">#03A9F4</color>
+    <color name="colorAccent">#3493D3</color>
+    <color name="navigationBarColor">#D32F2F</color>
+    <color name="progress_color">#F44336</color>
+    <color name="white">#FFFFFF</color>
+    <color name="progress_bg">#FFFFFF</color>
+
 </resources>

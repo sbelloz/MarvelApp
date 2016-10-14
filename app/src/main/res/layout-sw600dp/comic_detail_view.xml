@@ -4,11 +4,14 @@
     android:id="@+id/root_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:baselineAligned="false">
 
     <ImageView
+        android:id="@+id/comic_image"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/image_height"
+        android:layout_height="@dimen/comic_image_height"
+        android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher"/>
 
     <include layout="@layout/comic_description_view"/>

@@ -4,11 +4,13 @@ import com.android.simone.github.marvelapp.domain.model.Comic;
 
 import java.util.List;
 
+import rx.Observable;
+
 /**
- * @author Simone Bellotti <simone.bellotti@immobiliare.it>
+ * @author Simone Bellotti
  */
 
 public interface ComicDataSource {
 
-    List<Comic> getComics(int page, String characterId);
+    Observable<List<Comic>> getComics(int page, String characterId);
 }

@@ -4,19 +4,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.android.simone.github.marvelapp.R;
 import com.android.simone.github.marvelapp.presentation.ui.BaseActivity;
 import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
- * @author Simone Bellotti <simone.bellotti@immobiliare.it>
+ * @author Simone Bellotti
  */
 
 public class ComicDetailActivity extends BaseActivity {
 
+    private static final String TAG = ComicDetailActivity.class.getSimpleName();
     public static final String EXTRA_COMIC = "comic";
 
     public static Intent newIntent(Context context, ComicViewModel comic) {
@@ -24,15 +28,40 @@ public class ComicDetailActivity extends BaseActivity {
                 .putExtra(EXTRA_COMIC, comic);
     }
 
+    Unbinder unbinder;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.comic_detail_view)
+    ComicDetailView comicDetailView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comic_detail);
+        unbinder = ButterKnife.bind(this);
+
         setSupportActionBar(toolbar);
 
         setDisplayHomeAsUpEnabled(true);
+
+        ComicViewModel comic = getComicFromIntent(getIntent());
+        if (comic != null) {
+            comicDetailView.showComic(comic);
+        } else {
+            Log.e(TAG, "You have passed a null comic");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (unbinder != null) {
+            unbinder.unbind();
+        }
+    }
+
+    private ComicViewModel getComicFromIntent(Intent intent) {
+        return intent.getParcelableExtra(EXTRA_COMIC);
     }
 }

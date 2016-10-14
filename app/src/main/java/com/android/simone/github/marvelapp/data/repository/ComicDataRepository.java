@@ -6,20 +6,27 @@ import com.android.simone.github.marvelapp.domain.repository.ComicRepository;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import rx.Observable;
+
 /**
- * @author Simone Bellotti <simone.bellotti@immobiliare.it>
+ * @author Simone Bellotti
  */
 
+@Singleton
 public class ComicDataRepository implements ComicRepository {
 
     private final ComicDataSource dataSource;
 
+    @Inject
     public ComicDataRepository(ComicDataSource dataSource) {
         this.dataSource = dataSource;
     }
 
     @Override
-    public List<Comic> getComics(int page, String characterId) {
+    public Observable<List<Comic>> getComics(int page, String characterId) {
         return dataSource.getComics(page, characterId);
     }
 

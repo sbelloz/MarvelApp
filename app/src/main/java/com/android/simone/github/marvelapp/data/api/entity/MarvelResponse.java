@@ -3,7 +3,7 @@ package com.android.simone.github.marvelapp.data.api.entity;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * @author Simone Bellotti <simone.bellotti@immobiliare.it>
+ * @author Simone Bellotti
  */
 
 public class MarvelResponse {
@@ -13,9 +13,17 @@ public class MarvelResponse {
     @SerializedName("status")
     private String status;
     @SerializedName("data")
-    private DataApiContainer data;
+    private DataContainer data;
 
-    public DataApiContainer getData() {
+    public DataContainer getData() {
         return data;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

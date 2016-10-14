@@ -10,7 +10,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * @author Simone Bellotti <simone.bellotti@immobiliare.it>
+ * @author Simone Bellotti
  */
 public class AuthHashInterceptor implements Interceptor {
     private static final String TIMESTAMP_KEY = "ts";

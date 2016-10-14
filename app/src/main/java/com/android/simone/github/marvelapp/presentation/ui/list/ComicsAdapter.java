@@ -12,6 +12,8 @@ import com.android.simone.github.marvelapp.presentation.ui.widget.adapter.Endles
 import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel;
 import com.bumptech.glide.Glide;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -21,13 +23,14 @@ import butterknife.ButterKnife;
 
 public class ComicsAdapter extends EndlessRecyclerAdapter<ComicViewModel, ComicsAdapter.ViewHolder> {
 
+    @Inject
     public ComicsAdapter() {
         super(R.layout.progress_item);
     }
 
     @Override
     protected ViewHolder getViewHolder(ViewGroup parent, int viewType) {
-        View itemView  = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_comic, null, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_comic, parent, false);
         return new ViewHolder(itemView);
     }
 
@@ -49,10 +52,12 @@ public class ComicsAdapter extends EndlessRecyclerAdapter<ComicViewModel, Comics
 
         public void bindItem(ComicViewModel comic, View.OnClickListener onClickListener) {
             itemView.setOnClickListener(onClickListener);
+            itemView.setTag(comic);
 
             titleView.setText(comic.getTitle());
             Glide.with(comicView.getContext())
                     .load(comic.getThumbnailUrl())
+//                    .centerCrop()
                     .crossFade()
                     .into(comicView);
         }

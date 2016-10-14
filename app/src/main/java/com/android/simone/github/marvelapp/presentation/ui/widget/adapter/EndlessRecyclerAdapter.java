@@ -45,6 +45,7 @@ public abstract class EndlessRecyclerAdapter<T, VH extends RecyclerView.ViewHold
     public void setIsLoading(boolean isLoading) {
         this.isLoading = isLoading;
         if (isLoading) {
+//            notifyDataSetChanged();
             notifyItemInserted(items.size());
         }
     }
@@ -60,6 +61,10 @@ public abstract class EndlessRecyclerAdapter<T, VH extends RecyclerView.ViewHold
     public int getItemViewType(int position) {
         return (isLoading() && position >= items.size()) ?
                 TYPE_PROGRESS : super.getItemViewType(position);
+    }
+
+    public boolean isProgressView(int position) {
+        return position == (items.size() + 1);
     }
 
     @SuppressWarnings("unchecked")

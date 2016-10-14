@@ -3,7 +3,7 @@ package com.android.simone.github.marvelapp.domain.mapper;
 import java.util.Collection;
 
 /**
- * @author Simone Bellotti <simone.bellotti@immobiliare.it>
+ * @author Simone Bellotti
  */
 
 public interface Mapper<From, To> {

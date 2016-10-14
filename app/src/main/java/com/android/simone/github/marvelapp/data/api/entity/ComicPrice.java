@@ -1,8 +1,23 @@
 package com.android.simone.github.marvelapp.data.api.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
- * @author Simone Bellotti <simone.bellotti@immobiliare.it>
+ * @author Simone Bellotti
  */
 
 public class ComicPrice {
+
+    @SerializedName("type")
+    private String type;
+    @SerializedName("price")
+    private float price;
+
+    public String getType() {
+        return type;
+    }
+
+    public float getPrice() {
+        return price;
+    }
 }

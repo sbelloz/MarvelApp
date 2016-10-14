@@ -18,7 +18,7 @@ public abstract class RecyclerViewAdapter<T, VH extends RecyclerView.ViewHolder>
         implements View.OnClickListener {
 
     protected List<T> items = new ArrayList<>();
-//    protected OnItemClickListener<T> listener;
+    protected OnItemClickListener<T> listener;
 
     public RecyclerViewAdapter() {
         super();
@@ -59,9 +59,9 @@ public abstract class RecyclerViewAdapter<T, VH extends RecyclerView.ViewHolder>
         return items.get(position);
     }
 
-//    public void setOnItemClickListener(OnItemClickListener<T> listener) {
-//        this.listener = listener;
-//    }
+    public void setOnItemClickListener(OnItemClickListener<T> listener) {
+        this.listener = listener;
+    }
 
     public void add(T item, int position) {
         items.add(position, item);
@@ -94,4 +94,12 @@ public abstract class RecyclerViewAdapter<T, VH extends RecyclerView.ViewHolder>
         notifyDataSetChanged();
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public void onClick(View v) {
+        T item = (T) v.getTag();
+        if (listener != null) {
+            listener.onItemClick(v,item);
+        }
+    }
 }

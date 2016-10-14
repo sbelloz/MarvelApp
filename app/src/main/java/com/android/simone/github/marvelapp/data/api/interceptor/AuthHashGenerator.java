@@ -1,13 +1,15 @@
 package com.android.simone.github.marvelapp.data.api.interceptor;
 
+import com.android.simone.github.marvelapp.data.api.exception.MarvelApiException;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * @author Simone Bellotti <simone.bellotti@immobiliare.it>
+ * @author Simone Bellotti
  */
 
-class AuthHashGenerator implements HashGenerator {
+public class AuthHashGenerator {
     String generateHash(String timestamp, String publicKey, String privateKey)
             throws MarvelApiException {
         try {
@@ -21,7 +23,7 @@ class AuthHashGenerator implements HashGenerator {
             }
             return md5.toString();
         } catch (NoSuchAlgorithmException e) {
-            throw new MarvelApiException("cannot generate the api key", e);
+            throw new MarvelApiException("Cannot generate the api key", e);
         }
     }
 }

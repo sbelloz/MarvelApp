@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">MarvelApp</string>
+   <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.
+    </string>
+    <string name="desc_title">Description</string>
+    <string name="year_title">Year</string>
+    <string name="comic_title">Title</string>
+    <string name="price_title">Price</string>
+    <string name="ops_something_went_wrong_retry">Ops, Something went wrong. Retry?</string>
+    <string name="no_results">No results</string>
+    <string name="retry">Retry</string>
 </resources>

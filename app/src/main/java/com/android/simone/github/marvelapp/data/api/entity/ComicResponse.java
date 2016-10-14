@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * @author Simone Bellotti <simone.bellotti@immobiliare.it>
+ * @author Simone Bellotti
  */
 
 public class ComicResponse {
@@ -21,7 +21,9 @@ public class ComicResponse {
     @SerializedName("pageCount")
     private String pageCount;
     @SerializedName("dates")
-    private List<Date> dates;
+    private List<ComicDate> dates;
+    @SerializedName("prices")
+    private List<ComicPrice> prices;
     @SerializedName("thumbnail")
     private Image thumbnail;
     @SerializedName("images")
@@ -53,5 +55,13 @@ public class ComicResponse {
 
     public List<Image> getImages() {
         return images;
+    }
+
+    public List<ComicDate> getDates() {
+        return dates;
+    }
+
+    public List<ComicPrice> getPrices() {
+        return prices;
     }
 }

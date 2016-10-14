@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * @author Simone Bellotti <simone.bellotti@immobiliare.it>
+ * @author Simone Bellotti
  */
 
 public class DataContainer {
@@ -19,9 +19,9 @@ public class DataContainer {
     @SerializedName("count")
     private int count;
     @SerializedName("results")
-    private List<ComicApiResponse> resultList;
+    private List<ComicResponse> resultList;
 
-    public List<ComicApiResponse> getResultList() {
+    public List<ComicResponse> getResultList() {
         return resultList;
     }
 }

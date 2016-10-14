@@ -1,8 +1,17 @@
 package com.android.simone.github.marvelapp.presentation.di.component;
 
-/**
- * @author Simone Bellotti <simone.bellotti@immobiliare.it>
- */
+import com.android.simone.github.marvelapp.presentation.di.scope.ActivityScope;
+import com.android.simone.github.marvelapp.presentation.di.module.UseCaseModule;
+import com.android.simone.github.marvelapp.presentation.ui.list.ComicListView;
 
-public class ComicComponent {
+import dagger.Component;
+
+/**
+ * @author Simone Bellotti
+ */
+@ActivityScope
+@Component(dependencies = ApplicationComponent.class, modules = UseCaseModule.class)
+public interface ComicComponent {
+
+    void inject(ComicListView comicListView);
 }

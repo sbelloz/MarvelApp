@@ -9,16 +9,18 @@ import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 
 /**
- * @author Simone Bellotti <simone.bellotti@immobiliare.it>
+ * @author Simone Bellotti
  */
 
 @Singleton
 public class UIThread implements PostExecutionThread {
 
     @Inject
-    public UIThread() {}
+    public UIThread() {
+    }
 
-    @Override public Scheduler getScheduler() {
+    @Override
+    public Scheduler getScheduler() {
         return AndroidSchedulers.mainThread();
     }
 }

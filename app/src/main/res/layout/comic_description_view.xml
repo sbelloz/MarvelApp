@@ -1,6 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:paddingBottom="@dimen/md_keylines"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/md_keylines"
+        android:paddingLeft="@dimen/comic_desc_keylines"
+        android:paddingRight="@dimen/md_keylines"
+        android:paddingStart="@dimen/comic_desc_keylines"
+        android:paddingTop="@dimen/md_keylines">
+
+        <TextView
+            style="@style/TitleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/md_keylines"
+            android:layout_marginTop="@dimen/md_keylines"
+            android:text="@string/year_title" />
+
+        <TextView
+            android:id="@+id/year_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="2017" />
+
+        <TextView
+            style="@style/TitleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/md_keylines"
+            android:layout_marginTop="@dimen/md_keylines"
+            android:text="@string/price_title" />
+
+        <TextView
+            android:id="@+id/price_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="$19.66" />
+
+        <TextView
+            style="@style/TitleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/md_keylines"
+            android:layout_marginTop="@dimen/md_keylines"
+            android:text="@string/comic_title" />
+
+        <TextView
+            android:id="@+id/title_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/lorem_ipsum" />
+
+        <TextView
+            style="@style/TitleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/md_keylines"
+            android:layout_marginTop="@dimen/md_keylines"
+            android:text="@string/desc_title" />
+
+        <TextView
+            android:id="@+id/description_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/lorem_ipsum" />
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -1,18 +1,34 @@
 package com.android.simone.github.marvelapp.data.api.entity.mapper;
 
+import com.android.simone.github.marvelapp.data.api.entity.ComicDate;
+import com.android.simone.github.marvelapp.data.api.entity.ComicPrice;
 import com.android.simone.github.marvelapp.data.api.entity.ComicResponse;
 import com.android.simone.github.marvelapp.data.api.entity.Image;
+import com.android.simone.github.marvelapp.domain.mapper.Mapper;
 import com.android.simone.github.marvelapp.domain.model.Comic;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /**
- * @author Simone Bellotti <simone.bellotti@immobiliare.it>
+ * @author Simone Bellotti
  */
 
-public class ComicEntityMapper {
+@Singleton
+public class ComicEntityMapper implements Mapper<ComicResponse, Comic>  {
 
+    public static final String PRICE_KEY = "printPrice";
+    public static final String YEAR_KEY = "onsaleDate";
+
+    @Inject
+    public ComicEntityMapper() {
+    }
+
+    @Override
     public Comic transform(ComicResponse response) {
         Comic comic = new Comic();
         comic.setId(response.getId());
@@ -20,17 +36,45 @@ public class ComicEntityMapper {
         comic.setDescription(response.getDescription());
         comic.setPageCount(response.getPageCount());
         comic.setThumbnail(parseImage(response.getThumbnail()));
-        comic.setYear("DUMMY");//TODO
+        comic.setYear(parseYears(response.getDates()));
+        comic.setPrice(parsePrices(response.getPrices()));
         comic.setImages(parseImages(response.getImages()));
         return comic;
     }
 
-    public List<Comic> transformCollection(List<ComicResponse> responseList) {
+    @Override
+    public List<Comic> transformCollection(Collection<ComicResponse> fromList) {
         List<Comic> comicList = new ArrayList<>();
-        for (ComicResponse response : responseList) {
+        for (ComicResponse response : fromList) {
             comicList.add(transform(response));
         }
         return comicList;
+    }
+
+    private String parsePrices(List<ComicPrice> priceList) {
+        for (ComicPrice price : priceList) {
+            if (price.getType().equals(PRICE_KEY)) {
+                return parsePrice(price);
+            }
+        }
+        return null;
+    }
+
+    private String parsePrice(ComicPrice price) {
+        return "$" + price.getPrice();
+    }
+
+    private String parseYears(List<ComicDate> dateList) {
+        for (ComicDate date : dateList) {
+            if (date.getType().equals(YEAR_KEY)) {
+                return parseYear(date);
+            }
+        }
+        return null;
+    }
+
+    private String parseYear(ComicDate date) {
+        return date.getDate().substring(0, 4);
     }
 
     private String parseImage(Image image) {
