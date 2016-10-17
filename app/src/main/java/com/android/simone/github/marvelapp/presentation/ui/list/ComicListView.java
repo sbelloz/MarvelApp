@@ -81,12 +81,12 @@ public class ComicListView
         initRecyclerView();
         initRetryBtn();
         initAdapter();
-        initPresenter();
     }
 
-    private void initInjector() {
-        ComponentProvider.provideComicComponent(ComponentProvider.provideApplicationComponent())
-                .inject(this);
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        initPresenter();
     }
 
     @Override
@@ -152,6 +152,11 @@ public class ComicListView
     private void init(Context context) {
         inflate(context, R.layout.comic_list_view, this);
         unbinder = ButterKnife.bind(this);
+    }
+
+    private void initInjector() {
+        ComponentProvider.provideComicComponent(ComponentProvider.provideApplicationComponent())
+                .inject(this);
     }
 
     private void initPresenter() {
