@@ -183,13 +183,12 @@ public class ComicListView
         });
         comicRecyclerView.setAdapter(comicsAdapter);
 
-//        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-//            @Override
-//            public int getSpanSize(int position) {
-                    //doesn't work
-//                return comicsAdapter.isProgressView(position) ? 1 : layoutManager.getSpanCount();
-//            }
-//        });
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return comicsAdapter.isProgressView(position) ? layoutManager.getSpanCount() : 1;
+            }
+        });
     }
 
     private void initEndlessScrollListener(RecyclerView.LayoutManager layoutManager) {

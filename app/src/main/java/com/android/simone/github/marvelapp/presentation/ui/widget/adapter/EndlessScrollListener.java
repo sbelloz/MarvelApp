@@ -16,18 +16,16 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
     private int limitItemCount;
     private RecyclerView.LayoutManager layoutManager;
 
+    public abstract void onLoadMore();
+
     public EndlessScrollListener(RecyclerView.LayoutManager layoutManager, int limitItemCount) {
         this.layoutManager = layoutManager;
         this.limitItemCount = limitItemCount;
     }
 
-    public abstract void onLoadMore();
-
     public void setAvailableItemCount(int availableItemCount) {
         this.availableItemCount = availableItemCount;
     }
-
-
 
     @Override
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {

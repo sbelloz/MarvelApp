@@ -46,7 +46,7 @@ public abstract class EndlessRecyclerAdapter<T, VH extends RecyclerView.ViewHold
         this.isLoading = isLoading;
         if (isLoading) {
 //            notifyDataSetChanged();
-            notifyItemInserted(items.size());
+            notifyItemInserted(getItemCount());
         }
     }
 
@@ -64,7 +64,7 @@ public abstract class EndlessRecyclerAdapter<T, VH extends RecyclerView.ViewHold
     }
 
     public boolean isProgressView(int position) {
-        return position == (items.size() + 1);
+        return position == items.size();
     }
 
     @SuppressWarnings("unchecked")

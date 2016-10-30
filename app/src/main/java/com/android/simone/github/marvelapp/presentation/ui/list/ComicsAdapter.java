@@ -21,11 +21,12 @@ import butterknife.ButterKnife;
  * @author Simone Bellotti
  */
 
-public class ComicsAdapter extends EndlessRecyclerAdapter<ComicViewModel, ComicsAdapter.ViewHolder> {
+public class ComicsAdapter
+        extends EndlessRecyclerAdapter<ComicViewModel, ComicsAdapter.ViewHolder> {
 
     @Inject
     public ComicsAdapter() {
-        super(R.layout.progress_item);
+        super(R.layout.item_progress);
     }
 
     @Override
@@ -57,7 +58,6 @@ public class ComicsAdapter extends EndlessRecyclerAdapter<ComicViewModel, Comics
             titleView.setText(comic.getTitle());
             Glide.with(comicView.getContext())
                     .load(comic.getThumbnailUrl())
-//                    .centerCrop()
                     .crossFade()
                     .into(comicView);
         }
