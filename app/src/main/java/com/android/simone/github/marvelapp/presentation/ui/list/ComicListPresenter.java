@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.android.simone.github.marvelapp.domain.interactor.UseCase;
 import com.android.simone.github.marvelapp.domain.model.Comic;
-import com.android.simone.github.marvelapp.presentation.Constants;
 import com.android.simone.github.marvelapp.presentation.di.scope.ActivityScope;
 import com.android.simone.github.marvelapp.presentation.mapper.ComicViewModelMapper;
 import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel;
@@ -12,10 +11,9 @@ import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import rx.Subscriber;
-
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 /**
  * @author Simone Bellotti
@@ -23,8 +21,13 @@ import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 @ActivityScope
 public class ComicListPresenter implements ComicListContract.Presenter {
 
+    private static final String TAG = ComicListPresenter.class.getSimpleName();
+
     private int page = 0;
-    private final String characterId = Constants.CAPTAIN_AMERICA_ID;
+
+    @Inject
+    @Named("character_id")
+    String characterId;
 
     private final UseCase getComicsUseCase;
     private final ComicViewModelMapper viewModelMapper;
@@ -57,8 +60,8 @@ public class ComicListPresenter implements ComicListContract.Presenter {
 
     @Override
     public void loadNewPage() {
-        Log.d("ComicListPresenter", "loadNewPage: " + page);
         getComicList(++page);
+        Log.d(TAG, "loadNewPage: " + page);
     }
 
     @Override

@@ -9,9 +9,9 @@ import com.android.simone.github.marvelapp.domain.executor.JobExecutor;
 import com.android.simone.github.marvelapp.domain.executor.PostExecutionThread;
 import com.android.simone.github.marvelapp.domain.executor.ThreadExecution;
 import com.android.simone.github.marvelapp.domain.repository.ComicRepository;
-import com.android.simone.github.marvelapp.presentation.Constants;
 import com.android.simone.github.marvelapp.presentation.UIThread;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -47,8 +47,15 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    ComicDataSource provideCloudComicDataSource(MarvelApiClient marvelApiClient, ComicEntityMapper mapper) {
-        return new CloudComicDataSource(marvelApiClient, mapper, Constants.COMICS_PER_REQUEST);
+    ComicDataSource provideCloudComicDataSource(MarvelApiClient marvelApiClient, ComicEntityMapper mapper,
+                                                @Named("comic_per_page") int comicPerPage) {
+        return new CloudComicDataSource(marvelApiClient, mapper, comicPerPage);
     }
 
+    @Provides
+    @Singleton
+    MarvelApiClient provideMarvelApiClient(@Named("marvel_public_api_key") String publicKey,
+                                           @Named("marvel_private_api_key") String privateKey) {
+        return new MarvelApiClient(publicKey, privateKey);
+    }
 }

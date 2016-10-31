@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.simone.github.marvelapp.R;
-import com.android.simone.github.marvelapp.presentation.ui.widget.adapter.EndlessRecyclerAdapter;
+import com.android.simone.github.marvelapp.presentation.ui.widget.recyclerview.EndlessRecyclerAdapter;
 import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel;
 import com.bumptech.glide.Glide;
 

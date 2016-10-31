@@ -1,4 +1,4 @@
-package com.android.simone.github.marvelapp.presentation.ui.widget;
+package com.android.simone.github.marvelapp.presentation.ui.widget.recyclerview;
 
 import android.content.Context;
 import android.content.res.TypedArray;

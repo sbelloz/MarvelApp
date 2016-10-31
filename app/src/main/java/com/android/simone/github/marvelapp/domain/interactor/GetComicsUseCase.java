@@ -26,10 +26,10 @@ public class GetComicsUseCase extends UseCase<Object> {
 
     @Override
     protected Observable buildObservable(Object... params) {
-        if (params != null) {
+        if (params != null && params.length == 2) {
             return comicRepository.getComics((Integer) params[0], (String) params[1]);
         } else {
-            throw new UnsupportedOperationException("must provide mandatory params");
+            throw new UnsupportedOperationException("Must provide mandatory params: " + params);
         }
     }
 }

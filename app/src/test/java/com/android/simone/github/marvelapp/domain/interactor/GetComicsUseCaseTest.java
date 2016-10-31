@@ -38,7 +38,7 @@ public class GetComicsUseCaseTest {
     @Test
     public void testGetComicsUseCase_success() throws Exception {
         int page = 0;
-        getComicsUseCase.buildObservable(page);
+        getComicsUseCase.buildObservable(page, "1009220");
 
         verify(mockUserRepository).getComics(page, "1009220");
         verifyNoMoreInteractions(mockUserRepository);

@@ -21,8 +21,10 @@ import rx.observers.TestSubscriber;
 public class CloudComicDataSourceTest {
 
     private int page;
-
     private String characterId;
+    private String publicKey;
+    private String privateKey;
+
 
     public CloudComicDataSourceTest() {
     }
@@ -31,11 +33,13 @@ public class CloudComicDataSourceTest {
     public void setUp() throws Exception {
         page = 0;
         characterId = "1009220";
+        publicKey = "6a7ed890b4b941a925202a5630d5b162";
+        privateKey = "0f1d0fdf46a0bf32f962b0b9997233c0395cdf8e";
     }
 
     @Test
     public void testComicListObservableCreation() throws Exception {
-        ComicDataSource dataSource = new CloudComicDataSource(new MarvelApiClient(), new ComicEntityMapper(), 20);
+        ComicDataSource dataSource = new CloudComicDataSource(new MarvelApiClient(publicKey, privateKey), new ComicEntityMapper(), 20);
         TestSubscriber<List<Comic>> testSubscriber = provideTestSubscriber(dataSource);
 
         testSubscriber.assertNoErrors();
@@ -43,7 +47,7 @@ public class CloudComicDataSourceTest {
 
     @Test
     public void testComicList_success() throws Exception {
-        ComicDataSource dataSource = new CloudComicDataSource(new MarvelApiClient(), new ComicEntityMapper(), 20);
+        ComicDataSource dataSource = new CloudComicDataSource(new MarvelApiClient(publicKey, privateKey), new ComicEntityMapper(), 20);
         TestSubscriber<List<Comic>> testSubscriber = provideTestSubscriber(dataSource);
         Assert.assertTrue(!testSubscriber.getOnNextEvents().isEmpty());
     }

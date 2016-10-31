@@ -1,4 +1,4 @@
-package com.android.simone.github.marvelapp.presentation.ui.widget.adapter;
+package com.android.simone.github.marvelapp.presentation.ui.widget.recyclerview;
 
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;

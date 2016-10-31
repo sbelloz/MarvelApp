@@ -11,16 +11,16 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.android.simone.github.marvelapp.R;
-import com.android.simone.github.marvelapp.presentation.Constants;
 import com.android.simone.github.marvelapp.presentation.di.ComponentProvider;
-import com.android.simone.github.marvelapp.presentation.ui.widget.adapter.EndlessScrollListener;
-import com.android.simone.github.marvelapp.presentation.ui.widget.adapter.OnItemClickListener;
+import com.android.simone.github.marvelapp.presentation.ui.widget.recyclerview.EndlessScrollListener;
+import com.android.simone.github.marvelapp.presentation.ui.widget.recyclerview.OnItemClickListener;
 import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,6 +45,9 @@ public class ComicListView
     @BindView(R.id.btn_retry)
     Button btnRetry;
 
+    @Inject
+    @Named("comic_per_page")
+    int comicPerPage;
     @Inject
     ComicListPresenter presenter;
     @Inject
@@ -170,7 +173,7 @@ public class ComicListView
         comicRecyclerView.setLayoutManager(layoutManager);
         comicRecyclerView.setHasFixedSize(true);
         comicRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        initEndlessScrollListener(layoutManager);
+        initEndlessScrollListener(layoutManager, comicPerPage);
     }
 
     private void initAdapter() {
@@ -191,8 +194,8 @@ public class ComicListView
         });
     }
 
-    private void initEndlessScrollListener(RecyclerView.LayoutManager layoutManager) {
-        endlessScrollListener = new EndlessScrollListener(layoutManager, Constants.COMICS_PER_REQUEST) {
+    private void initEndlessScrollListener(RecyclerView.LayoutManager layoutManager, int comicPerPage) {
+        endlessScrollListener = new EndlessScrollListener(layoutManager, comicPerPage) {
             @Override
             public void onLoadMore() {
                 comicsAdapter.setIsLoading(true);

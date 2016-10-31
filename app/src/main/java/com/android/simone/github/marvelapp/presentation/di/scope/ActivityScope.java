@@ -9,7 +9,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 /**
  * @author Simone Bellotti
  */
-
 @Scope
 @Retention(RUNTIME)
 public @interface ActivityScope {
