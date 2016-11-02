@@ -1,5 +1,10 @@
 package com.android.simone.github.marvelapp.presentation.mapper;
 
+import android.os.Build;
+import android.text.Html;
+import android.text.Spanned;
+import android.text.TextUtils;
+
 import com.android.simone.github.marvelapp.domain.mapper.Mapper;
 import com.android.simone.github.marvelapp.domain.model.Comic;
 import com.android.simone.github.marvelapp.presentation.di.scope.ActivityScope;
@@ -25,7 +30,9 @@ public class ComicViewModelMapper implements Mapper<Comic, ComicViewModel> {
     public ComicViewModel transform(Comic comic) {
         ComicViewModel viewModel = new ComicViewModel();
         viewModel.setId(comic.getId());
-        viewModel.setDescription(comic.getDescription());
+        if (!TextUtils.isEmpty(comic.getDescription())) {
+            viewModel.setDescription(fromHtml(comic.getDescription()).toString());
+        }
         viewModel.setImages(comic.getImages());
         viewModel.setThumbnailUrl(comic.getThumbnail());
         viewModel.setTitle(comic.getTitle());
@@ -41,5 +48,13 @@ public class ComicViewModelMapper implements Mapper<Comic, ComicViewModel> {
             comicList.add(transform(comic));
         }
         return comicList;
+    }
+
+    private Spanned fromHtml(String source) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return Html.fromHtml(source, Html.FROM_HTML_MODE_LEGACY);
+        } else {
+            return Html.fromHtml(source);
+        }
     }
 }

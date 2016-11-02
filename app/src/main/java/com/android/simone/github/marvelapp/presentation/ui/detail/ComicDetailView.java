@@ -2,7 +2,6 @@ package com.android.simone.github.marvelapp.presentation.ui.detail;
 
 import android.content.Context;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -81,9 +80,7 @@ public class ComicDetailView
 
         titleView.setText(comic.getTitle());
         yearView.setText(comic.getYear());
-        if (!TextUtils.isEmpty(comic.getDescription())) {
-            descriptionView.setText(Utils.fromHtml(comic.getDescription()));
-        }
+        descriptionView.setText(comic.getDescription());
         priceView.setText(comic.getPrice());
 
         Glide.with(getContext())
