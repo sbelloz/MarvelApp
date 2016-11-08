@@ -1,7 +1,7 @@
 package com.android.simone.github.marvelapp.data.api.entity.mapper;
 
-import com.android.simone.github.marvelapp.data.api.entity.ComicDate;
-import com.android.simone.github.marvelapp.data.api.entity.ComicPrice;
+import com.android.simone.github.marvelapp.data.api.entity.Date;
+import com.android.simone.github.marvelapp.data.api.entity.Price;
 import com.android.simone.github.marvelapp.data.api.entity.ComicResponse;
 import com.android.simone.github.marvelapp.data.api.entity.Image;
 import com.android.simone.github.marvelapp.domain.mapper.Mapper;
@@ -51,8 +51,8 @@ public class ComicEntityMapper implements Mapper<ComicResponse, Comic>  {
         return comicList;
     }
 
-    private String parsePrices(List<ComicPrice> priceList) {
-        for (ComicPrice price : priceList) {
+    private String parsePrices(List<Price> priceList) {
+        for (Price price : priceList) {
             if (price.getType().equals(PRICE_KEY)) {
                 return parsePrice(price);
             }
@@ -60,12 +60,12 @@ public class ComicEntityMapper implements Mapper<ComicResponse, Comic>  {
         return null;
     }
 
-    private String parsePrice(ComicPrice price) {
+    private String parsePrice(Price price) {
         return "$" + price.getPrice();
     }
 
-    private String parseYears(List<ComicDate> dateList) {
-        for (ComicDate date : dateList) {
+    private String parseYears(List<Date> dateList) {
+        for (Date date : dateList) {
             if (date.getType().equals(YEAR_KEY)) {
                 return parseYear(date);
             }
@@ -73,7 +73,7 @@ public class ComicEntityMapper implements Mapper<ComicResponse, Comic>  {
         return null;
     }
 
-    private String parseYear(ComicDate date) {
+    private String parseYear(Date date) {
         return date.getDate().substring(0, 4);
     }
 

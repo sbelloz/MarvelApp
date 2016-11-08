@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * @author Simone Bellotti
  */
 
-public class ComicPrice {
+public class Price {
 
     @SerializedName("type")
     private String type;

@@ -21,9 +21,9 @@ public class ComicResponse {
     @SerializedName("pageCount")
     private String pageCount;
     @SerializedName("dates")
-    private List<ComicDate> dates;
+    private List<Date> dates;
     @SerializedName("prices")
-    private List<ComicPrice> prices;
+    private List<Price> prices;
     @SerializedName("thumbnail")
     private Image thumbnail;
     @SerializedName("images")
@@ -57,11 +57,11 @@ public class ComicResponse {
         return images;
     }
 
-    public List<ComicDate> getDates() {
+    public List<Date> getDates() {
         return dates;
     }
 
-    public List<ComicPrice> getPrices() {
+    public List<Price> getPrices() {
         return prices;
     }
 }

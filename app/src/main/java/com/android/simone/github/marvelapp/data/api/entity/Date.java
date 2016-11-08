@@ -4,7 +4,7 @@ package com.android.simone.github.marvelapp.data.api.entity;
  * @author Simone Bellotti
  */
 
-public class ComicDate {
+public class Date {
 
     private String type;
     private String date;
