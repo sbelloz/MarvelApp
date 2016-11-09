@@ -1,4 +1,4 @@
-MarvelApp
+MarvelApp [![Build Status](https://travis-ci.org/SimoneBellotti/MarvelApp.svg?branch=master)](https://travis-ci.org/SimoneBellotti/MarvelApp)
 =========
 
 Wallapop Android tech test
@@ -14,9 +14,9 @@ Architecture
 ============
 
 * Clean Architecture with 2 layers: domain and presentation/ui
-* Use of MVP in the presentation layer
+* Use of MVP for the presentation layer
 * Use of Dagger 2 for dependency injection
-* Use of reactive pattern, so Use cases return an ```Observable<T>``` and all lower layers must follow this rule.
+* Use of reactive pattern, so use cases return an ```Observable<T>``` and all lower layers must follow this rule.
 
 Dependencies
 ============
@@ -37,7 +37,7 @@ Optimizations
 License
 =======
 ```
-Copyright (c) 2016 Simone Bellotti
+Copyright 2016 Simone Bellotti
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
