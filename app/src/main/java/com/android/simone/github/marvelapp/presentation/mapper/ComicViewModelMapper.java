@@ -23,7 +23,7 @@ import javax.inject.Inject;
 public class ComicViewModelMapper implements Mapper<Comic, ComicViewModel> {
 
     @Inject
-    public ComicViewModelMapper() {
+    ComicViewModelMapper() {
     }
 
     @Override

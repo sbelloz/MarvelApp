@@ -76,6 +76,7 @@ public class ComicListPresenter implements ComicListContract.Presenter {
         comicListView.showComicDetail(model);
     }
 
+    @SuppressWarnings("unchecked")
     private void getComicList(int page) {
         getComicsUseCase.execute(new ComicListSubscriber(), page, characterId);
     }
