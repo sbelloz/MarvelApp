@@ -35,8 +35,6 @@ public class ComicListActivity
         setSupportActionBar(toolbar);
 
         initViews();
-
-        getApplicationComponent().inject(this);
     }
 
     private void initViews() {

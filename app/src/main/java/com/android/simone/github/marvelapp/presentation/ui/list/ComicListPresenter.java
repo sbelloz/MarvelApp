@@ -78,13 +78,17 @@ public class ComicListPresenter implements ComicListContract.Presenter {
 
     @SuppressWarnings("unchecked")
     private void getComicList(int page) {
-        getComicsUseCase.execute(new ComicListSubscriber(), page, characterId);
+        getComicsUseCase.execute(buildComicListSubscriber(), page, characterId);
     }
 
     private void releaseRefs() {
         getComicsUseCase.unsubscribe();
         comicListView = null;
         page = 0;
+    }
+
+    private ComicListSubscriber buildComicListSubscriber() {
+        return new ComicListSubscriber();
     }
 
     private final class ComicListSubscriber extends Subscriber<List<Comic>> {
@@ -103,8 +107,9 @@ public class ComicListPresenter implements ComicListContract.Presenter {
 
         @Override
         public void onNext(List<Comic> comicList) {
-            comicListView.showComicList(viewModelMapper.transformCollection(comicList));
+            comicListView.showComicList(viewModelMapper.transformCollection(comicList)); //TODO not on UI thread
         }
-
     }
+
+
 }

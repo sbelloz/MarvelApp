@@ -1,25 +1,21 @@
-MarvelApp [![Build Status](https://travis-ci.org/SimoneBellotti/MarvelApp.svg?branch=master)](https://travis-ci.org/SimoneBellotti/MarvelApp)
-=========
+# MarvelApp [![Build Status](https://travis-ci.org/SimoneBellotti/MarvelApp.svg?branch=master)](https://travis-ci.org/SimoneBellotti/MarvelApp)
 
 Wallapop Android tech test
 
-Screenshots
-===========
+# Screenshots
 
 ![Mobile list](art/mobile_detail.png) 
 ![Mobile list](art/mobile_list.png)
 ![Mobile list](art/tablet_list.png)
 
-Architecture
-============
+# Architecture
 
-* Clean Architecture with 2 layers: domain and presentation/ui
-* Use of MVP for the presentation layer
-* Use of Dagger 2 for dependency injection
-* Use of reactive pattern, so use cases return an ```Observable<T>``` and all lower layers must follow this rule.
+* **Clean Architecture** with 2 layers: domain and presentation/ui
+* Model-View-Presenter
+* **Dependency Injection** with Dagger 2
+* **Reactive Programming** with RxJava
 
-Dependencies
-============
+# Dependencies
 
 * [RxJava](https://github.com/ReactiveX/RxJava)
 * [Retrofit](https://github.com/square/retrofit)
@@ -29,15 +25,14 @@ Dependencies
 * [Glide](https://github.com/bumptech/glide)
 * [LeakCanary](https://github.com/square/leakcanary)
 
-Optimizations
-=============
+# TODO
 
-* Caching comic list 
+[] Cache comics
 
-License
-=======
+# License
+
 ```
-Copyright 2016 Simone Bellotti
+Copyright 2017 Simone Bellotti
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

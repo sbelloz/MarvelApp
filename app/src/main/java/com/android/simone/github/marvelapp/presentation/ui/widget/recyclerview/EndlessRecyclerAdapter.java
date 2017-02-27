@@ -45,7 +45,8 @@ public abstract class EndlessRecyclerAdapter<T, VH extends RecyclerView.ViewHold
     public void setIsLoading(boolean isLoading) {
         this.isLoading = isLoading;
         if (isLoading) {
-//            notifyDataSetChanged();
+            // TODO: 18/01/17 Cannot call this method in a scroll callback. Scroll callbacks might be run during a measure & layout pass where you cannot change the RecyclerView data.
+            // todo Any method call that might change the structure of the RecyclerView or the adapter contents should be postponed to the next frame.
             notifyItemInserted(getItemCount());
         }
     }
@@ -91,8 +92,8 @@ public abstract class EndlessRecyclerAdapter<T, VH extends RecyclerView.ViewHold
         }
     }
 
-    public static class ProgressViewHolder extends RecyclerView.ViewHolder {
-        public ProgressViewHolder(View v) {
+    private static class ProgressViewHolder extends RecyclerView.ViewHolder {
+        ProgressViewHolder(View v) {
             super(v);
         }
     }

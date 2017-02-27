@@ -13,7 +13,6 @@ import com.squareup.leakcanary.LeakCanary;
 
 public class MarvelApplication extends Application {
 
-
     @Override
     public void onCreate() {
         super.onCreate();

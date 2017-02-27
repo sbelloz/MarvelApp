@@ -4,6 +4,8 @@ import com.android.simone.github.marvelapp.domain.executor.PostExecutionThread;
 import com.android.simone.github.marvelapp.domain.executor.ThreadExecution;
 import com.android.simone.github.marvelapp.domain.repository.ComicRepository;
 
+import java.util.Arrays;
+
 import javax.inject.Inject;
 
 import rx.Observable;
@@ -29,7 +31,7 @@ public class GetComicsUseCase extends UseCase<Object> {
         if (params != null && params.length == 2) {
             return comicRepository.getComics((Integer) params[0], (String) params[1]);
         } else {
-            throw new UnsupportedOperationException("Must provide mandatory params: " + params);
+            throw new UnsupportedOperationException("Must provide mandatory params: " + Arrays.toString(params));
         }
     }
 }

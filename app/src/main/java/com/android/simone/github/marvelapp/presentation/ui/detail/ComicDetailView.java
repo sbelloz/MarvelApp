@@ -39,7 +39,7 @@ public class ComicDetailView
     TextView descriptionView;
     @BindView(R.id.root_container)
     ViewGroup rootContainer;
-
+    @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbarLayout;
 
     public ComicDetailView(Context context) {
@@ -94,7 +94,7 @@ public class ComicDetailView
         unbinder = ButterKnife.bind(this);
 
         showContainer(false);
-        collapsingToolbarLayout = ButterKnife.findById(this, R.id.collapsing_toolbar);
+//        collapsingToolbarLayout = ButterKnife.findById(this, R.id.collapsing_toolbar);
     }
 
     private void showContainer(boolean show) {

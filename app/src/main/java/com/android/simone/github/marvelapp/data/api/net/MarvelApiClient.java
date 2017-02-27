@@ -25,11 +25,6 @@ public class MarvelApiClient {
 
     private Retrofit retrofit;
 
-//    @Inject
-//    public MarvelApiClient() {
-//        this(PUBLIC_KEY, PRIVATE_KEY);
-//    }
-
     @Inject
     public MarvelApiClient(String publicKey, String privateKey) {
         initRetrofit(publicKey, privateKey);
