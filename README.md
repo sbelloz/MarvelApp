@@ -1,4 +1,4 @@
-# MarvelApp [![Build Status](https://travis-ci.org/SimoneBellotti/MarvelApp.svg?branch=master)](https://travis-ci.org/SimoneBellotti/MarvelApp)
+# MarvelApp [![Build Status](https://travis-ci.org/sbelloz/MarvelApp.svg?branch=master)](https://travis-ci.org/sbelloz/MarvelApp)
 
 Wallapop Android tech test
 
