@@ -1,21 +1,21 @@
-# MarvelApp [![Build Status](https://travis-ci.org/SimoneBellotti/MarvelApp.svg?branch=master)](https://travis-ci.org/SimoneBellotti/MarvelApp)
+# MarvelApp [![Build Status](https://travis-ci.org/sbelloz/MarvelApp.svg?branch=master)](https://travis-ci.org/sbelloz/MarvelApp)
 
-**Wallapop** Android tech test
+[Wallapop](https://www.wallapop.com/) Android Tech test, listing Captain America's comics in Master/detail app thanks to Marvel Api 
 
-# Screenshots
+## Screenshots
 
 ![Mobile list](art/mobile_detail.png) 
 ![Mobile list](art/mobile_list.png)
 ![Mobile list](art/tablet_list.png)
 
-# Architecture
+## Architecture
 
 * **Clean Architecture** with 2 layers: domain and presentation/ui
-* **Model-View-Presenter**
+* **MVP**
 * **Dependency Injection** with Dagger 2
 * **Reactive Programming** with RxJava
 
-# Dependencies
+## Dependencies
 
 * [RxJava](https://github.com/ReactiveX/RxJava)
 * [Retrofit](https://github.com/square/retrofit)
@@ -25,12 +25,12 @@
 * [Glide](https://github.com/bumptech/glide)
 * [LeakCanary](https://github.com/square/leakcanary)
 
-# TODO
+## TODO
 
 - [ ] Cache comics
 - [ ] Orientation change, App in background, retain Presenters
 
-# License
+## License
 
 ```
 Copyright © 2017 Simone Bellotti
