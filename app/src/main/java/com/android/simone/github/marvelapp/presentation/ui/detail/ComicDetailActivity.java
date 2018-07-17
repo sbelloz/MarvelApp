@@ -8,7 +8,7 @@ import android.util.Log;
 
 import com.android.simone.github.marvelapp.R;
 import com.android.simone.github.marvelapp.presentation.ui.BaseActivity;
-import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel;
+import com.android.simone.github.marvelapp.presentation.viewmodel.ComicModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +23,7 @@ public class ComicDetailActivity extends BaseActivity {
     private static final String TAG = ComicDetailActivity.class.getSimpleName();
     public static final String EXTRA_COMIC = "comic";
 
-    public static Intent newIntent(Context context, ComicViewModel comic) {
+    public static Intent newIntent(Context context, ComicModel comic) {
         return new Intent(context, ComicDetailActivity.class)
                 .putExtra(EXTRA_COMIC, comic);
     }
@@ -45,7 +45,7 @@ public class ComicDetailActivity extends BaseActivity {
 
         setDisplayHomeAsUpEnabled(true);
 
-        ComicViewModel comic = getComicFromIntent(getIntent());
+        ComicModel comic = getComicFromIntent(getIntent());
         if (comic != null) {
             comicDetailView.showComic(comic);
         } else {
@@ -61,7 +61,7 @@ public class ComicDetailActivity extends BaseActivity {
         }
     }
 
-    private ComicViewModel getComicFromIntent(Intent intent) {
+    private ComicModel getComicFromIntent(Intent intent) {
         return intent.getParcelableExtra(EXTRA_COMIC);
     }
 }

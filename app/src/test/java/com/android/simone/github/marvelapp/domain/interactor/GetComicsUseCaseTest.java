@@ -19,26 +19,25 @@ import static org.mockito.Mockito.verifyZeroInteractions;
 
 public class GetComicsUseCaseTest {
 
-    private GetComicsUseCase getComicsUseCase;
+    GetComicsUseCase getComicsUseCase;
 
     @Mock
-    private ThreadExecution mockThreadExecutor;
+    ThreadExecution mockThreadExecutor;
     @Mock
-    private PostExecutionThread mockPostExecutionThread;
+    PostExecutionThread mockPostExecutionThread;
     @Mock
-    private ComicRepository mockUserRepository;
+    ComicRepository mockUserRepository;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        getComicsUseCase = new GetComicsUseCase(mockUserRepository, mockThreadExecutor,
-                mockPostExecutionThread);
+        getComicsUseCase = new GetComicsUseCase(mockUserRepository, mockThreadExecutor, mockPostExecutionThread);
     }
 
     @Test
     public void testGetComicsUseCase_success() throws Exception {
         int page = 0;
-        getComicsUseCase.buildObservable(page, "1009220");
+        getComicsUseCase.buildObservable(GetComicsUseCase.Params.of(page, "1009220"));
 
         verify(mockUserRepository).getComics(page, "1009220");
         verifyNoMoreInteractions(mockUserRepository);

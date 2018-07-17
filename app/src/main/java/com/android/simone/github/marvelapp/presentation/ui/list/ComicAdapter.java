@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.android.simone.github.marvelapp.R;
 import com.android.simone.github.marvelapp.presentation.ui.widget.recyclerview.EndlessRecyclerAdapter;
-import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel;
+import com.android.simone.github.marvelapp.presentation.viewmodel.ComicModel;
 import com.bumptech.glide.Glide;
 
 import javax.inject.Inject;
@@ -21,11 +21,11 @@ import butterknife.ButterKnife;
  * @author Simone Bellotti
  */
 
-public class ComicsAdapter
-        extends EndlessRecyclerAdapter<ComicViewModel, ComicsAdapter.ViewHolder> {
+public class ComicAdapter
+        extends EndlessRecyclerAdapter<ComicModel, ComicAdapter.ViewHolder> {
 
     @Inject
-    public ComicsAdapter() {
+    public ComicAdapter() {
         super(R.layout.item_progress);
     }
 
@@ -36,7 +36,7 @@ public class ComicsAdapter
     }
 
     @Override
-    protected void onBindView(ViewHolder holder, int position, ComicViewModel item) {
+    protected void onBindView(ViewHolder holder, int position, ComicModel item) {
         holder.bindItem(item, this);
     }
 
@@ -51,8 +51,8 @@ public class ComicsAdapter
             ButterKnife.bind(this, itemView);
         }
 
-        public void bindItem(ComicViewModel comic, View.OnClickListener onClickListener) {
-            itemView.setOnClickListener(onClickListener);
+        public void bindItem(ComicModel comic, View.OnClickListener onClickListener) {
+            itemView.setOnClickListener(onClickListener);// TODO: 08/05/17
             itemView.setTag(comic);
 
             titleView.setText(comic.getTitle());
@@ -60,6 +60,8 @@ public class ComicsAdapter
                     .load(comic.getThumbnailUrl())
                     .crossFade()
                     .into(comicView);
+
+
         }
     }
 }

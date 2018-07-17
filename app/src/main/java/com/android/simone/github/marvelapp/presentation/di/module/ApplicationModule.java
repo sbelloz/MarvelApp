@@ -1,6 +1,5 @@
 package com.android.simone.github.marvelapp.presentation.di.module;
 
-import com.android.simone.github.marvelapp.data.api.entity.mapper.ComicEntityMapper;
 import com.android.simone.github.marvelapp.data.api.net.MarvelApiClient;
 import com.android.simone.github.marvelapp.data.repository.ComicDataRepository;
 import com.android.simone.github.marvelapp.data.repository.datasource.CloudComicDataSource;
@@ -47,9 +46,8 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    ComicDataSource provideCloudComicDataSource(MarvelApiClient marvelApiClient, ComicEntityMapper mapper,
-                                                @Named("comic_per_page") int comicPerPage) {
-        return new CloudComicDataSource(marvelApiClient, mapper, comicPerPage);
+    ComicDataSource provideComicDataSource(CloudComicDataSource cloudComicDataSource) {
+        return cloudComicDataSource;
     }
 
     @Provides
@@ -58,4 +56,11 @@ public class ApplicationModule {
                                            @Named("marvel_private_api_key") String privateKey) {
         return new MarvelApiClient(publicKey, privateKey);
     }
+
+//    @Provides
+//    @Singleton
+//    ComicFlowCoordinator provideComicFlowCoordinator(ComicFlowCoordinator comicFlowCoordinator) {
+//        return comicFlowCoordinator;
+//    }
+
 }

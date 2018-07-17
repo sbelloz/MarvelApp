@@ -4,7 +4,7 @@ import com.android.simone.github.marvelapp.data.api.entity.Date;
 import com.android.simone.github.marvelapp.data.api.entity.Price;
 import com.android.simone.github.marvelapp.data.api.entity.ComicResponse;
 import com.android.simone.github.marvelapp.data.api.entity.Image;
-import com.android.simone.github.marvelapp.domain.mapper.Mapper;
+import com.android.simone.github.marvelapp.domain.mapper.ModelMapper;
 import com.android.simone.github.marvelapp.domain.model.Comic;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import javax.inject.Singleton;
  */
 
 @Singleton
-public class ComicEntityMapper implements Mapper<ComicResponse, Comic>  {
+public class ComicEntityMapper implements ModelMapper<ComicResponse, Comic> {
 
     public static final String PRICE_KEY = "printPrice";
     public static final String YEAR_KEY = "onsaleDate";

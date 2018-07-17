@@ -16,7 +16,7 @@ import rx.subscriptions.Subscriptions;
  * @author Simone Bellotti
  */
 
-public abstract class UseCase<T> {
+public abstract class UseCase<T, Params> {
 
     private final ThreadExecution threadExecution;
     private final PostExecutionThread postExecutionThread;
@@ -29,29 +29,24 @@ public abstract class UseCase<T> {
         this.postExecutionThread = postExecutionThread;
     }
 
-    @SuppressWarnings("unchecked")
-    protected abstract Observable buildObservable(T... params);
+    protected abstract Observable<T> buildObservable(Params params);
 
-    @SuppressWarnings("unchecked")
-    public void execute(Subscriber subscriber, T... params) {
+    public void execute(Subscriber<T> subscriber, Params params) {
         this.subscription = buildObservable(params)
                 .subscribeOn(threadExecution.getScheduler())
                 .observeOn(postExecutionThread.getScheduler())
                 .subscribe(subscriber);
     }
 
-    @SuppressWarnings("unchecked")
-    public void execute(Action1<T> onNext, Action1<Throwable> onError, T... params) {
+    public void execute(Action1<T> onNext, Action1<Throwable> onError, Params params) {
         execute(onNext, onError, Actions.empty(), params);
     }
 
-    @SuppressWarnings("unchecked")
-    public void execute(Action1<T> onNext, T... params) {
+    public void execute(Action1<T> onNext, Params params) {
         execute(onNext, InternalObservableUtils.ERROR_NOT_IMPLEMENTED, Actions.empty(), params);
     }
 
-    @SuppressWarnings("unchecked")
-    public void execute(Action1<T> onNext, Action1<Throwable> onError, Action0 onCompleted, T... params) {
+    public void execute(Action1<T> onNext, Action1<Throwable> onError, Action0 onCompleted, Params params) {
         this.subscription = buildObservable(params)
                 .subscribeOn(threadExecution.getScheduler())
                 .observeOn(postExecutionThread.getScheduler())

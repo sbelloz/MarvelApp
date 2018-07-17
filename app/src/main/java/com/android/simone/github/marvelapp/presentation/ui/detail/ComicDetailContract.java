@@ -1,7 +1,7 @@
 package com.android.simone.github.marvelapp.presentation.ui.detail;
 
 import com.android.simone.github.marvelapp.presentation.ui.BasePresenter;
-import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel;
+import com.android.simone.github.marvelapp.presentation.viewmodel.ComicModel;
 
 /**
  * @author Simone Bellotti
@@ -14,6 +14,6 @@ public interface ComicDetailContract {
     }
 
     interface View {
-        void showComic(ComicViewModel comic);
+        void showComic(ComicModel comic);
     }
 }

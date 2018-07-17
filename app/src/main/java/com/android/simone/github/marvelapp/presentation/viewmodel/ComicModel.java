@@ -9,7 +9,7 @@ import java.util.List;
  * @author Simone Bellotti
  */
 
-public class ComicViewModel implements Parcelable {
+public class ComicModel implements Parcelable {
 
     private String id;
     private String title;
@@ -92,10 +92,10 @@ public class ComicViewModel implements Parcelable {
         dest.writeString(this.price);
     }
 
-    public ComicViewModel() {
+    public ComicModel() {
     }
 
-    protected ComicViewModel(Parcel in) {
+    protected ComicModel(Parcel in) {
         this.id = in.readString();
         this.title = in.readString();
         this.description = in.readString();
@@ -105,15 +105,15 @@ public class ComicViewModel implements Parcelable {
         this.price = in.readString();
     }
 
-    public static final Parcelable.Creator<ComicViewModel> CREATOR = new Parcelable.Creator<ComicViewModel>() {
+    public static final Parcelable.Creator<ComicModel> CREATOR = new Parcelable.Creator<ComicModel>() {
         @Override
-        public ComicViewModel createFromParcel(Parcel source) {
-            return new ComicViewModel(source);
+        public ComicModel createFromParcel(Parcel source) {
+            return new ComicModel(source);
         }
 
         @Override
-        public ComicViewModel[] newArray(int size) {
-            return new ComicViewModel[size];
+        public ComicModel[] newArray(int size) {
+            return new ComicModel[size];
         }
     };
 }

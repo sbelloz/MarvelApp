@@ -1,6 +1,6 @@
 package com.android.simone.github.marvelapp.presentation.ui.list;
 
-import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel;
+import com.android.simone.github.marvelapp.presentation.viewmodel.ComicModel;
 
 /**
  * @author Simone Bellotti
@@ -8,5 +8,5 @@ import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel
 
 public interface OnComicClickListener {
 
-    void onComicClick(ComicViewModel comic);
+    void onComicClick(ComicModel comic);
 }

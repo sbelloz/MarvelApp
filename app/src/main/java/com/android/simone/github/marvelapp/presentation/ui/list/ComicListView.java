@@ -1,11 +1,13 @@
 package com.android.simone.github.marvelapp.presentation.ui.list;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -13,8 +15,7 @@ import android.widget.TextView;
 import com.android.simone.github.marvelapp.R;
 import com.android.simone.github.marvelapp.presentation.di.ComponentProvider;
 import com.android.simone.github.marvelapp.presentation.ui.widget.recyclerview.EndlessScrollListener;
-import com.android.simone.github.marvelapp.presentation.ui.widget.recyclerview.OnItemClickListener;
-import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel;
+import com.android.simone.github.marvelapp.presentation.viewmodel.ComicModel;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.List;
@@ -34,6 +35,10 @@ public class ComicListView
         extends FrameLayout
         implements ComicListContract.View {
 
+    @Inject
+    @Named("comic_per_page")
+    int comicPerPage;
+
     private Unbinder unbinder;
 
     @BindView(R.id.recycler_view)
@@ -46,12 +51,9 @@ public class ComicListView
     Button btnRetry;
 
     @Inject
-    @Named("comic_per_page")
-    int comicPerPage;
-    @Inject
     ComicListPresenter presenter;
     @Inject
-    ComicsAdapter comicsAdapter;
+    ComicAdapter comicsAdapter;
 
     OnComicClickListener onComicClickListener;
     EndlessScrollListener endlessScrollListener;
@@ -72,6 +74,7 @@ public class ComicListView
         init(context);
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public ComicListView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context);
@@ -134,14 +137,14 @@ public class ComicListView
     }
 
     @Override
-    public void showComicList(List<ComicViewModel> comicList) {
+    public void showComicList(List<ComicModel> comicList) {
         endlessScrollListener.setAvailableItemCount(comicList.size());
         comicsAdapter.addAll(comicList);
         comicsAdapter.setIsLoading(false);
     }
 
     @Override
-    public void showComicDetail(ComicViewModel comic) {
+    public void showComicDetail(ComicModel comic) {
         if (onComicClickListener != null) {
             onComicClickListener.onComicClick(comic);
         }
@@ -158,7 +161,7 @@ public class ComicListView
     }
 
     private void initInjector() {
-        ComponentProvider.provideComicComponent(ComponentProvider.provideApplicationComponent())
+        ComponentProvider.provideComicComponent(ComponentProvider.provideApplicationComponent((Activity)getContext()))
                 .inject(this);
     }
 
@@ -177,13 +180,7 @@ public class ComicListView
     }
 
     private void initAdapter() {
-        comicsAdapter = new ComicsAdapter();
-        comicsAdapter.setOnItemClickListener(new OnItemClickListener<ComicViewModel>() {
-            @Override
-            public void onItemClick(View view, ComicViewModel item) {
-                presenter.onComicClicked(item);
-            }
-        });
+        comicsAdapter.setOnItemClickListener((view, item) -> presenter.onComicClicked(item));
         comicRecyclerView.setAdapter(comicsAdapter);
 
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -206,12 +203,7 @@ public class ComicListView
     }
 
     private void initRetryBtn() {
-        btnRetry.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.retry();
-            }
-        });
+        btnRetry.setOnClickListener(v -> presenter.retry());
     }
 
     private void showEmptyView() {

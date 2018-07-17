@@ -2,19 +2,22 @@ package com.android.simone.github.marvelapp.domain.interactor;
 
 import com.android.simone.github.marvelapp.domain.executor.PostExecutionThread;
 import com.android.simone.github.marvelapp.domain.executor.ThreadExecution;
+import com.android.simone.github.marvelapp.domain.model.Comic;
 import com.android.simone.github.marvelapp.domain.repository.ComicRepository;
 
-import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Inject;
 
+import dagger.internal.Preconditions;
 import rx.Observable;
 
 /**
  * @author Simone Bellotti
  */
 
-public class GetComicsUseCase extends UseCase<Object> {
+public class GetComicsUseCase
+        extends UseCase<List<Comic>, GetComicsUseCase.Params> {
 
     private ComicRepository comicRepository;
 
@@ -27,11 +30,23 @@ public class GetComicsUseCase extends UseCase<Object> {
     }
 
     @Override
-    protected Observable buildObservable(Object... params) {
-        if (params != null && params.length == 2) {
-            return comicRepository.getComics((Integer) params[0], (String) params[1]);
-        } else {
-            throw new UnsupportedOperationException("Must provide mandatory params: " + Arrays.toString(params));
+    protected Observable<List<Comic>> buildObservable(Params params) {
+        Preconditions.checkNotNull(params);
+        return comicRepository.getComics(params.page, params.characterId);
+    }
+
+    public static class Params {
+
+        private final int page;
+        private final String characterId;
+
+        public Params(int page, String characterId) {
+            this.page = page;
+            this.characterId = characterId;
+        }
+
+        public static Params of(int page, String characterId) {
+            return new Params(page, characterId);
         }
     }
 }

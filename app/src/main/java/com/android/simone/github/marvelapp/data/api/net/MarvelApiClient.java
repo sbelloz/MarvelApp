@@ -20,8 +20,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MarvelApiClient {
 
     public static final String BASE_URL = "http://gateway.marvel.com";
-    public static final String PUBLIC_KEY = "6a7ed890b4b941a925202a5630d5b162";
-    public static final String PRIVATE_KEY = "0f1d0fdf46a0bf32f962b0b9997233c0395cdf8e";
 
     private Retrofit retrofit;
 
@@ -30,7 +28,7 @@ public class MarvelApiClient {
         initRetrofit(publicKey, privateKey);
     }
 
-    public <T> T createService(final Class<T> service) {
+    public <T> T createService(Class<T> service) {
         return retrofit.create(service);
     }
 

@@ -1,7 +1,7 @@
 package com.android.simone.github.marvelapp.presentation.ui.list;
 
 import com.android.simone.github.marvelapp.presentation.ui.BasePresenter;
-import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel;
+import com.android.simone.github.marvelapp.presentation.viewmodel.ComicModel;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public interface ComicListContract {
 
         void retry();
 
-        void onComicClicked(ComicViewModel model);
+        void onComicClicked(ComicModel model);
     }
 
     interface View {
@@ -32,8 +32,8 @@ public interface ComicListContract {
 
         void hideRetry();
 
-        void showComicList(List<ComicViewModel> comicList);
+        void showComicList(List<ComicModel> comicList);
 
-        void showComicDetail(ComicViewModel model);
+        void showComicDetail(ComicModel model);
     }
 }

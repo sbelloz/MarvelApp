@@ -2,11 +2,12 @@ package com.android.simone.github.marvelapp.presentation.ui.list;
 
 import android.util.Log;
 
+import com.android.simone.github.marvelapp.domain.interactor.GetComicsUseCase;
 import com.android.simone.github.marvelapp.domain.interactor.UseCase;
 import com.android.simone.github.marvelapp.domain.model.Comic;
 import com.android.simone.github.marvelapp.presentation.di.scope.ActivityScope;
-import com.android.simone.github.marvelapp.presentation.mapper.ComicViewModelMapper;
-import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel;
+import com.android.simone.github.marvelapp.presentation.mapper.ComicModelMapper;
+import com.android.simone.github.marvelapp.presentation.viewmodel.ComicModel;
 
 import java.util.List;
 
@@ -30,13 +31,13 @@ public class ComicListPresenter implements ComicListContract.Presenter {
     String characterId;
 
     private final UseCase getComicsUseCase;
-    private final ComicViewModelMapper viewModelMapper;
+    private final ComicModelMapper viewModelMapper;
 
     private ComicListContract.View comicListView;
 
     @Inject
     public ComicListPresenter(UseCase useCase,
-                              ComicViewModelMapper viewModelMapper) {
+                              ComicModelMapper viewModelMapper) {
         this.getComicsUseCase = useCase;
         this.viewModelMapper = viewModelMapper;
     }
@@ -72,13 +73,13 @@ public class ComicListPresenter implements ComicListContract.Presenter {
     }
 
     @Override
-    public void onComicClicked(ComicViewModel model) {
+    public void onComicClicked(ComicModel model) {
         comicListView.showComicDetail(model);
     }
 
     @SuppressWarnings("unchecked")
     private void getComicList(int page) {
-        getComicsUseCase.execute(buildComicListSubscriber(), page, characterId);
+        getComicsUseCase.execute(buildComicListSubscriber(), GetComicsUseCase.Params.of(page, characterId));
     }
 
     private void releaseRefs() {
@@ -102,12 +103,12 @@ public class ComicListPresenter implements ComicListContract.Presenter {
         public void onError(Throwable e) {
             Log.e(TAG, "onError: " + e);
             comicListView.hideLoading();
-            comicListView.showRetry(); //TODO show a clear message for user
+            comicListView.showRetry();
         }
 
         @Override
         public void onNext(List<Comic> comicList) {
-            comicListView.showComicList(viewModelMapper.transformCollection(comicList)); //TODO not on UI thread
+            comicListView.showComicList(viewModelMapper.transformCollection(comicList));
         }
     }
 

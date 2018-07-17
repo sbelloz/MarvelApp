@@ -1,6 +1,8 @@
 package com.android.simone.github.marvelapp.presentation.ui.detail;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
@@ -10,7 +12,7 @@ import android.widget.TextView;
 
 import com.android.simone.github.marvelapp.R;
 import com.android.simone.github.marvelapp.presentation.Utils;
-import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel;
+import com.android.simone.github.marvelapp.presentation.viewmodel.ComicModel;
 import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
@@ -57,6 +59,7 @@ public class ComicDetailView
         init(context);
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public ComicDetailView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context);
@@ -71,7 +74,7 @@ public class ComicDetailView
     }
 
     @Override
-    public void showComic(final ComicViewModel comic) {
+    public void showComic(final ComicModel comic) {
         showContainer(true);
 
         if (collapsingToolbarLayout != null) {
@@ -101,7 +104,7 @@ public class ComicDetailView
         rootContainer.setVisibility(show ? VISIBLE : GONE);
     }
 
-    private String getRandomImage(ComicViewModel comic) {
+    private String getRandomImage(ComicModel comic) {
         String imageUrl;
         if (comic.getImageList() != null && !comic.getImageList().isEmpty()) {
             int index = Utils.getRandomInt(0, comic.getImageList().size() - 1);

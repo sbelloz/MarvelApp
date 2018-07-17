@@ -6,7 +6,7 @@ import java.util.Collection;
  * @author Simone Bellotti
  */
 
-public interface Mapper<From, To> {
+public interface ModelMapper<From, To> {
 
     To transform(From from);
 

@@ -1,6 +1,6 @@
 # MarvelApp [![Build Status](https://travis-ci.org/SimoneBellotti/MarvelApp.svg?branch=master)](https://travis-ci.org/SimoneBellotti/MarvelApp)
 
-Wallapop Android tech test
+**Wallapop** Android tech test
 
 # Screenshots
 
@@ -11,7 +11,7 @@ Wallapop Android tech test
 # Architecture
 
 * **Clean Architecture** with 2 layers: domain and presentation/ui
-* Model-View-Presenter
+* **Model-View-Presenter**
 * **Dependency Injection** with Dagger 2
 * **Reactive Programming** with RxJava
 
@@ -27,12 +27,13 @@ Wallapop Android tech test
 
 # TODO
 
-[] Cache comics
+- [ ] Cache comics
+- [ ] Orientation change, App in background, retain Presenters
 
 # License
 
 ```
-Copyright 2017 Simone Bellotti
+Copyright © 2017 Simone Bellotti
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

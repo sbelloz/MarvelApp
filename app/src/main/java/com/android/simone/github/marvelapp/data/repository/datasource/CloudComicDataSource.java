@@ -12,6 +12,7 @@ import com.android.simone.github.marvelapp.domain.model.Comic;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import retrofit2.Call;
@@ -33,7 +34,7 @@ public class CloudComicDataSource implements ComicDataSource {
     @Inject
     public CloudComicDataSource(MarvelApiClient apiClient,
                                 ComicEntityMapper entityMapper,
-                                int comicsLimit) {
+                                 @Named("comic_per_page") int comicsLimit) {
         this.apiService = apiClient.createService(MarvelApiService.class);
         this.entityMapper = entityMapper;
         this.comicsLimit = comicsLimit;

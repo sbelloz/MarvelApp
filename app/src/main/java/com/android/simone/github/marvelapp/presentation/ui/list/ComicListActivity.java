@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import com.android.simone.github.marvelapp.R;
 import com.android.simone.github.marvelapp.presentation.ui.BaseActivity;
 import com.android.simone.github.marvelapp.presentation.ui.detail.ComicDetailView;
-import com.android.simone.github.marvelapp.presentation.viewmodel.ComicViewModel;
+import com.android.simone.github.marvelapp.presentation.viewmodel.ComicModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,12 +46,12 @@ public class ComicListActivity
     }
 
     @Override
-    public void onComicClick(ComicViewModel comic) {
+    public void onComicClick(ComicModel comic) {
         if (isTwoPane()) {
             ComicDetailView comicDetailView = ButterKnife.findById(this, R.id.comic_detail_view);
             comicDetailView.showComic(comic);
         } else {
-            navigator.navigateToComicDetail(this, comic);
+            flowCoordinator.readComicDetail(comic);
         }
     }
 }

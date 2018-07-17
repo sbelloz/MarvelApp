@@ -5,9 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.android.simone.github.marvelapp.presentation.MarvelApplication;
+import com.android.simone.github.marvelapp.presentation.di.ComponentProvider;
 import com.android.simone.github.marvelapp.presentation.di.component.ApplicationComponent;
-import com.android.simone.github.marvelapp.presentation.ui.navigator.Navigator;
+import com.android.simone.github.marvelapp.presentation.ui.navigator.ComicFlowCoordinator;
 
 import javax.inject.Inject;
 
@@ -18,12 +18,13 @@ import javax.inject.Inject;
 public abstract class BaseActivity extends AppCompatActivity {
 
     @Inject
-    protected Navigator navigator;
+    protected ComicFlowCoordinator flowCoordinator;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getApplicationComponent().inject(this);
+        getApplicationComponent()
+                .inject(this);
     }
 
     public void setDisplayHomeAsUpEnabled(boolean showHomeAsUp) {
@@ -35,13 +36,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            navigator.finish(this);
+            flowCoordinator.closeScreen();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     protected ApplicationComponent getApplicationComponent() {
-        return ((MarvelApplication) getApplication()).getApplicationComponent();
+        return ComponentProvider.provideApplicationComponent(this);
     }
 }
