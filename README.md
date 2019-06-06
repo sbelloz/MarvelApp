@@ -1,6 +1,6 @@
 # MarvelApp [![Build Status](https://travis-ci.org/sbelloz/MarvelApp.svg?branch=master)](https://travis-ci.org/sbelloz/MarvelApp)
 
-[Wallapop](https://www.wallapop.com/) Android Tech test, listing Captain America's comics in Master/detail app thanks to Marvel Api 
+[Wallapop](https://www.wallapop.com/) Android Tech test, listing Captain America's comics in Master/detail app using to [Marvel Api](https://developer.marvel.com/)
 
 ## Screenshots
 
@@ -10,7 +10,7 @@
 
 ## Architecture
 
-* **Clean Architecture** with 2 layers: domain and presentation/ui
+* **Clean Architecture**
 * **MVP**
 * **Dependency Injection** with Dagger 2
 * **Reactive Programming** with RxJava

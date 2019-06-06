@@ -6,7 +6,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.3'
+        classpath 'com.android.tools.build:gradle:3.3.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -24,8 +24,8 @@ task clean(type: Delete) {
 }
 
 ext {
-    support_version = '25.3.1'
-    retrofit_version = '2.1.0'
+    support_version = '27.1.1'
+    retrofit_version = '2.3.0'
     gson_version = '2.7'
     materialish_progress_version = '1.7'
     glide_version = '3.7.0'
